@@ -11,3 +11,9 @@ test('the application returns a successful response', function () {
     );
     $response->assertStatus(200);
 });
+
+test('browser testing', function () {
+    $page = visit('/');
+
+    $page->assertSee('Hello Guest');
+});
