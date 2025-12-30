@@ -40,3 +40,12 @@ jobs:
         run: |
           composer install --no-interaction --prefer-dist --optimize-autoloader
           cp .env.example .env && php artisan key:generate
+
+      - name: Run database migrations
+        run: php artisan migrate --force
+
+      - name: Install npm dependencies, playwright, and build assets
+        run: |
+          bun install
+          bun run build
+          npx playwright install
