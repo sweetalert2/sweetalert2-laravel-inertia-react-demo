@@ -11,5 +11,6 @@
   </head>
   <body class="antialiased">
     @inertia
+    @include('sweetalert2::index')
   </body>
 </html>

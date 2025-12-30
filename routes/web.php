@@ -5,6 +5,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use SweetAlert2\Laravel\Swal;
 
 Route::get('/', function (): Response {
     return Inertia::render('Todo/List', [
@@ -34,6 +35,14 @@ Route::patch('/todos/{todo}', function (Todo $todo): RedirectResponse {
     ]);
 
     $todo->update($validated);
+
+    Swal::toastSuccess([
+        'title' => 'Saved!',
+        'position' => 'top-end',
+        'showConfirmButton' => false,
+        'timer' => 3000,
+        'timerProgressBar' => true,
+    ]);
 
     return redirect('/');
 });
