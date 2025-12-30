@@ -14,19 +14,19 @@ test('the application returns a successful response', function () {
 test('browser testing', function () {
     $page = visit('/');
 
-    $page->assertSee('No todos available.');
+    $page->assertSee('No tasks yet');
 });
 
 test('can add a new todo via browser', function () {
     $page = visit('/');
 
-    $page->assertSee('Add Todo');
+    $page->assertSee('Add');
     $page->type('input[type="text"]', 'Buy groceries');
     $page->click('button[type="submit"]');
 
     $page->waitForText('Buy groceries');
     $page->assertSee('Buy groceries');
-    $page->assertDontSee('No todos available.');
+    $page->assertDontSee('No tasks yet');
 });
 
 test('can add multiple todos via browser', function () {
