@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm, Link } from '@inertiajs/react'
 
 export default function TodoList({ todos }) {
   const { data, setData, post, processing } = useForm({
@@ -92,26 +92,28 @@ export default function TodoList({ todos }) {
           ) : (
             <ul className="space-y-3" role="list">
               {todos.map((todo) => (
-                <li
-                  key={todo.id}
-                  className="bg-white border-l-4 border-neutral-900 p-4 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex items-start">
-                    <div className="flex-1 min-w-0">
-                      <p
-                        className={`text-base font-medium ${
-                          todo.completed ? 'text-neutral-500 line-through' : 'text-neutral-900'
-                        }`}
-                      >
-                        {todo.title}
-                      </p>
-                      {todo.completed && (
-                        <span className="inline-flex items-center mt-2 px-2 py-1 text-xs font-medium bg-neutral-100 text-neutral-600">
-                          Completed
-                        </span>
-                      )}
+                <li key={todo.id}>
+                  <Link
+                    href={`/todos/${todo.id}/edit`}
+                    className="block bg-white border-l-4 border-neutral-900 p-4 shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-start">
+                      <div className="flex-1 min-w-0">
+                        <p
+                          className={`text-base font-medium ${
+                            todo.completed ? 'text-neutral-500 line-through' : 'text-neutral-900'
+                          }`}
+                        >
+                          {todo.title}
+                        </p>
+                        {todo.completed && (
+                          <span className="inline-flex items-center mt-2 px-2 py-1 text-xs font-medium bg-neutral-100 text-neutral-600">
+                            Completed
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </li>
               ))}
             </ul>
