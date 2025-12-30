@@ -1,10 +1,16 @@
-export default function TodoList({ user }) {
+export default function TodoList({ todos }) {
   return (
     <>
-      {user ? (
-        <h1 className="text-3xl font-bold underline">Welcome back, {user.name}!</h1>
+      {todos.length === 0 ? (
+        <p>No todos available.</p>
       ) : (
-        <h1 className="text-3xl font-bold underline">Hello Guest!</h1>
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>
+              {todo.title} {todo.completed ? '(Completed)' : ''}
+            </li>
+          ))}
+        </ul>
       )}
     </>
   )

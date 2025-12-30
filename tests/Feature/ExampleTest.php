@@ -15,5 +15,5 @@ test('the application returns a successful response', function () {
 test('browser testing', function () {
     $page = visit('/');
 
-    $page->assertSee('Hello Guest');
+    $page->assertSee('No todos available.');
 });
