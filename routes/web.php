@@ -21,3 +21,19 @@ Route::post('/todos', function (): RedirectResponse {
 
     return redirect('/');
 });
+
+Route::get('/todos/{todo}/edit', function (Todo $todo): Response {
+    return Inertia::render('Todo/Edit', [
+        'todo' => $todo,
+    ]);
+});
+
+Route::patch('/todos/{todo}', function (Todo $todo): RedirectResponse {
+    $validated = request()->validate([
+        'title' => 'required|string|max:255',
+    ]);
+
+    $todo->update($validated);
+
+    return redirect('/');
+});
