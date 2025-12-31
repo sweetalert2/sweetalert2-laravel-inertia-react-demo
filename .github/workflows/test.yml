@@ -26,6 +26,13 @@ jobs:
         run: |
           bun install
           bun run build
-          npx playwright install
+          npx playwright install chromium
 
       - run: php artisan test
+
+      - name: Store screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: Tests/Browser/Screenshots
