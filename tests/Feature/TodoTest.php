@@ -1,17 +1,6 @@
 <?php
 
-use Inertia\Testing\AssertableInertia;
-
-test('the application returns a successful response', function () {
-    $response = $this->get('/');
-
-    $response->assertInertia(fn (AssertableInertia $page) => $page
-        ->component('Todo/List')
-    );
-    $response->assertStatus(200);
-});
-
-test('browser testing', function () {
+test('todo list page loads correctly', function () {
     $page = visit('/');
 
     $page->assertSee('No tasks yet');
@@ -78,6 +67,8 @@ test('can edit todo from edit page', function () {
     $page->type('input[type="text"]', 'Updated todo');
     $page->click('button[type="submit"]');
     $page->waitForText('Updated todo');
+    $page->assertSee('Saved!');
+    $page->assertScreenshotMatches(true, true);
 
     // Verify we're back on the list page with the updated todo
     $page->assertSee('All Tasks');
